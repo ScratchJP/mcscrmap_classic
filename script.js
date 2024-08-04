@@ -45,7 +45,7 @@ document.body.appendChild(pScjp);
 // 中野区
 const pNkn = document.createElement("span");
 document.body.appendChild(pNkn);
-// 乱歩村
+// 乱歩市
 const pRa = document.createElement("span");
 document.body.appendChild(pRa);
 // 陸果町
@@ -75,7 +75,7 @@ setInterval(() => {
     // rg(変数, 地域名, x, z)
     rg(pScjp, "ScJP村", 10, -2);
     rg(pNkn, "中野区", -510, -190);
-    rg(pRa, "乱歩村", -290, -410);
+    rg(pRa, "乱歩市", -290, -410);
     rg(pRk, "陸果町", -448, -448);
     rg(pBy, "望洋市", -195, -800);
     rg(pys, "ysタウン", 285, 950);

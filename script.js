@@ -39,6 +39,7 @@ addEventListener("wheel", (event) => {
     ls = s;
 });
 
+/// 地域
 // scjp村
 const pScjp = document.createElement("span");
 document.body.appendChild(pScjp);
@@ -69,20 +70,25 @@ document.body.appendChild(pUX);
 // 凛
 const pLi = document.createElement("span");
 document.body.appendChild(pLi);
-// name: ScJP村, x: 10, z: -2
+
+/// 施設
+// ScJP一周年記念館
+const p1a = document.createElement("span");
+document.body.appendChild(p1a);
 
 setInterval(() => {
-    // rg(変数, 地域名, x, z)
-    rg(pScjp, "ScJP村", 10, -2);
-    rg(pNkn, "中野区", -510, -190);
-    rg(pRa, "乱歩市", -290, -410);
-    rg(pRk, "陸果町", -448, -448);
-    rg(pBy, "望洋市", -195, -800);
-    rg(pys, "ysタウン", 285, 950);
-    rg(psk, "すいこん島", 3190, 80);
-    rg(paI, "あぁるごんアイランド", 3600, 344);
-    rg(pUX, "UXRCF市", 872, 269);
-    rg(pLi, "凛市", -6, 1420);
+    // rg(変数, 地域・施設名, x, z, 施設？)
+    rg(pScjp, "ScJP村", 10, -2, 0);
+    rg(pNkn, "中野区", -510, -190, 0);
+    rg(pRa, "乱歩市", -290, -410, 0);
+    rg(pRk, "陸果町", -448, -448, 0);
+    rg(pBy, "望洋市", -195, -800, 0);
+    rg(pys, "ysタウン", 285, 950, 0);
+    rg(psk, "すいこん島", 3190, 80, 0);
+    rg(paI, "あぁるごんアイランド", 3600, 344, 0);
+    rg(pUX, "UXRCF市", 872, 269, 0);
+    rg(pLi, "凛市", -6, 1420, 0);
+    rg(p1a, "ScJP一周年記念館", 153, 356, 1);
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
     wx = window.innerWidth, wy = window.innerHeight;
@@ -94,6 +100,11 @@ setInterval(() => {
     x += sx * ml / ((ml > 2) + 1); z += sy * ml / ((ml > 2) + 1);
 })
 
-function rg(tg, name, xi, zi) {
-    tg.innerHTML = `<span class="t" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 + wy / 2}px);position:absolute;">${name}</span>`;
+function rg(tg, name, xi, zi, isF) {
+    let sf = "";
+    if (isF) {
+        sf = " sm";
+        tg.style.opacity = ms / 100 - .4;
+    }
+    tg.innerHTML = `<span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 + wy / 2}px);position:absolute;">${name}</span>`;
 }

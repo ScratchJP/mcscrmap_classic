@@ -3,6 +3,7 @@ body {
     image-rendering: pixelated;
     overflow: hidden;
     font-family: Consolas, Inconsolata, monospace;
+    font-size: medium;
 }
 
 .mx {
@@ -21,4 +22,9 @@ body {
     user-select: none;
     display: inline-block;
     padding: 2px;
+}
+
+.sm {
+    font-size: small;
+    font-weight: bold;
 }

@@ -1,8 +1,8 @@
-let mx = -1536, mz = -1536, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100;
+let mx = -1536, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100;
 let wx, wy, n, y, ymt;
 let sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
 let drag = false;
-const g = 12, b = 32, mj = document.getElementById('mh'), ix = 5632, iy = 4608;
+const g = 12, b = 32, mj = document.getElementById('mh'), ix = 5632, iy = 5120;
 document.addEventListener("mousemove", (event) => {
     document.onmousedown = () => { drag = true; mj.style.cursor = "grabbing"; }
     document.onmouseup = () => { drag = false; mj.style.cursor = "grab"; }
@@ -16,7 +16,7 @@ document.addEventListener("mousemove", (event) => {
 addEventListener("wheel", (event) => {
     scr = event.deltaY;
     n = scr / Math.abs(scr);
-    y = n * 10 / (((s <= 100 && n > 0) || s < 100) + 1) * (((s >= 500 && n < 0) || s > 500) * 4 + 1) * (((s >= 2500 && n < 0) || s > 2500) + 1);
+    y = n * 10 / (((s <= 100 && n > 0) || s < 100) + 1) * (((s >= 250 && n < 0) || s > 250) * 4 + 1) * (((s >= 2500 && n < 0) || s > 2500) + 1);
     s -= y;
     if (s < 5) {
         s = 5;
@@ -75,6 +75,24 @@ document.body.appendChild(pLi);
 // ScJP一周年記念館
 const p1a = document.createElement("span");
 document.body.appendChild(p1a);
+// ScJP村市役所
+const pss = document.createElement("span");
+document.body.appendChild(pss);
+// ScJP村黒ビル
+const pbb = document.createElement("span");
+document.body.appendChild(pbb);
+// ScJP村じきお像(銅)
+const cuj = document.createElement("span");
+document.body.appendChild(cuj);
+// ScJP村99とゆくの村人貿易所
+const y9v = document.createElement("span");
+document.body.appendChild(y9v);
+// 中野区役所
+const pnk = document.createElement("span");
+document.body.appendChild(pnk);
+// 陸果町utf
+const ufr = document.createElement("span");
+document.body.appendChild(ufr);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -89,6 +107,12 @@ setInterval(() => {
     rg(pUX, "UXRCF市", 872, 269, 0);
     rg(pLi, "凛市", -6, 1420, 0);
     rg(p1a, "ScJP一周年記念館", 153, 356, 1);
+    rg(pss, "市役所", 76, 101, 1);
+    rg(pbb, "黒ビル", 125, 107, 1);
+    rg(cuj, "じきお像", 55, 112, 1);
+    rg(y9v, "村人貿易所", 35, 135, 1);
+    rg(pnk, "区役所", -628, -226, 1);
+    rg(ufr, "ﾕﾆﾊﾞｰｻﾙﾂﾘｰﾌｧｰﾑ跡", -530, -450, 1);
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
     wx = window.innerWidth, wy = window.innerHeight;

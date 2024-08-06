@@ -120,6 +120,9 @@ document.body.appendChild(ironJikky);
 // 王の橋
 const jkb = document.createElement("span");
 document.body.appendChild(jkb);
+// 新開地駅
+const nks = document.createElement("span");
+document.body.appendChild(nks);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -149,6 +152,7 @@ setInterval(() => {
     rg(itr, "ゴーレムトラップ", -23, 7, 1)
     rg(ironJikky, "Iron Jikky", -29, 14, 1)
     rg(jkb, "王の橋", 79, 310, 1)
+    rg(nks, "新開地駅", -10, 3-124, 1)
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
     wx = window.innerWidth, wy = window.innerHeight;

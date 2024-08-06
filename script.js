@@ -93,6 +93,33 @@ document.body.appendChild(pnk);
 // 陸果町utf
 const ufr = document.createElement("span");
 document.body.appendChild(ufr);
+// 中野区坊屋
+const aby = document.createElement("span");
+document.body.appendChild(aby);
+// 阿斑銀行・信託銀行陸果支店
+const rab = document.createElement("span");
+document.body.appendChild(rab);
+// コンブニック号
+const ksh = document.createElement("span");
+document.body.appendChild(ksh);
+// 陸果駅
+const rks = document.createElement("span");
+document.body.appendChild(rks);
+// 武庫川橋
+const mkg = document.createElement("span");
+document.body.appendChild(mkg);
+// 武庫川駅
+const mks = document.createElement("span");
+document.body.appendChild(mks);
+// scjpゴーレムトラップ
+const itr = document.createElement("span");
+document.body.appendChild(itr);
+// ironJikky
+const ironJikky = document.createElement("span");
+document.body.appendChild(ironJikky);
+// 王の橋
+const jkb = document.createElement("span");
+document.body.appendChild(jkb);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -113,6 +140,15 @@ setInterval(() => {
     rg(y9v, "村人貿易所", 35, 135, 1);
     rg(pnk, "区役所", -628, -226, 1);
     rg(ufr, "ﾕﾆﾊﾞｰｻﾙﾂﾘｰﾌｧｰﾑ跡", -530, -450, 1);
+    rg(aby, "坊屋", -565, -290, 1);
+    rg(rab, "阿斑銀行・阿斑信託銀行<br>陸果支店", -444, -530, 1);
+    rg(ksh, "コンブニック号", -427, -620, 1);
+    rg(rks, "陸果駅", -370, -410, 1)
+    rg(mkg, "武庫川橋", -320, -412, 1)
+    rg(mks, "武庫川駅", -295, -397, 1)
+    rg(itr, "ゴーレムトラップ", -23, 7, 1)
+    rg(ironJikky, "Iron Jikky", -29, 14, 1)
+    rg(jkb, "王の橋", 79, 310, 1)
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
     wx = window.innerWidth, wy = window.innerHeight;

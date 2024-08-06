@@ -2,7 +2,7 @@ body {
     margin: 0;
     image-rendering: pixelated;
     overflow: hidden;
-    font-family: Consolas, Inconsolata, monospace;
+    font-family: Consolas, Inconsolata, Ubuntu, 'Noto Sans JP', 'M PLUS Rounded 1c', monospace;
     font-size: medium;
 }
 
@@ -22,9 +22,10 @@ body {
     user-select: none;
     display: inline-block;
     padding: 2px;
+    text-align: center;
 }
 
 .sm {
-    font-size: small;
-    font-weight: bold;
+    font-size: x-small;
+    font-weight: 600;
 }

@@ -1,11 +1,24 @@
-let mx = -1536, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100;
-let wx, wy, n, y, ymt;
-let sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
+const u = window.location.search
+const p = new URLSearchParams(u.search);
+let mx = -1536, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100, bs = .1;
+if (p.has('x')) {
+    x = -parseInt(p.get('x'));
+}
+if (p.has('z')) {
+    z = parseInt(p.get('z'));
+}
+if (p.has('s')) {
+    s = parseInt(p.get('s')) * 100;
+}
+let n, y, ymt;
+let wx = window.innerWidth, wy = window.innerHeight, sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
 let drag = false;
 const g = 12, b = 32, mj = document.getElementById('mh'), ix = 5632, iy = 5120;
+
+
 document.addEventListener("mousemove", (event) => {
-    document.onmousedown = () => { drag = true; mj.style.cursor = "grabbing"; }
-    document.onmouseup = () => { drag = false; mj.style.cursor = "grab"; }
+    document.onmousedown = () => { drag = true; }
+    document.onmouseup = () => { drag = false; }
     if ( drag ) {
         sx += event.movementX / g;
         sy -= event.movementY / g;
@@ -181,16 +194,24 @@ setInterval(() => {
     rg(kks, "旧家駅", -66, 85, 1)
     rg(ndk, "なんでも掲示板", 88, 81, 1)
     rg(scw, "センター西駅", 34, 76, 1)
+    // 3126, -261
+    ms -= bs;
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
+    ms += bs;
     wx = window.innerWidth, wy = window.innerHeight;
-    mj.style.backgroundPosition = `${(x + mx) * ms / 100 + wx / 2}px ${(-z + mz) * ms / 100 + wy / 2}`;
-    mj.style.backgroundSize = `${ix * ms / 100}px ${iy * ms / 100}px`
+    mj.style.backgroundPosition = `${(x + mx) * (ms / 100) + wx / 2}px ${(-z + mz) * (ms / 100) + wy / 2}`;
+    mj.style.backgroundSize = `${ix * (ms / 100 + 0)}px ${iy * (ms / 100 + 0)}px`
     document.getElementById('pos').textContent = `X: ${-(Math.round((x + cx * ml)))} Z: ${Math.round((z + cy * ml))}`;
     document.getElementById('z').textContent = `x${Math.round(ms) / 100}`
     sx -= sx / b, sy -= sy / b;
     x += sx * ml / ((ml > 2) + 1); z += sy * ml / ((ml > 2) + 1);
-})
+    if (drag) {
+        mj.style.cursor = "grabbing";
+    } else {
+        mj.style.cursor = "grab";
+    }
+}, 1)
 
 function rg(tg, name, xi, zi, isF) {
     let sf = "";
@@ -200,3 +221,25 @@ function rg(tg, name, xi, zi, isF) {
     }
     tg.innerHTML = `<span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 + wy / 2}px);position:absolute;">${name}</span>`;
 }
+
+let e = 0;
+const j = new Date().getTime();
+const d = .64;
+const si = setInterval(() => {
+    bs = -(Math.floor(easeOutExpo(e / 100) * 100) / 100 * 50) + 50;
+    e = (new Date().getTime() - j) / 10 / d;
+    e = Math.round(e * 100) / 100;
+    if (e >= 100) {
+        clearInterval(si);
+        bs = 0;
+    }
+}, 1)
+
+// https://easings.net/#easeOutBack
+function easeOutExpo(x) {
+    return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
+
+setInterval(() => {
+    history.replaceState(null, document.title, `?x=${Math.round(x * 100) / 100}&z=${Math.round(z * 100) / 100}&s=${s / 100}`);
+}, 100);

@@ -123,6 +123,27 @@ document.body.appendChild(jkb);
 // 新開地駅
 const nks = document.createElement("span");
 document.body.appendChild(nks);
+// すいこん島中心駅
+const skcs = document.createElement("span");
+document.body.appendChild(skcs);
+// すいこん島サトウキビファーム
+const sksc = document.createElement("span");
+document.body.appendChild(sksc);
+// すいこん島2トラップ+ツリーファーム
+const skt = document.createElement("span");
+document.body.appendChild(skt);
+// ぽてとの段々畑
+const ptf = document.createElement("span");
+document.body.appendChild(ptf);
+// 旧家駅
+const kks = document.createElement("span");
+document.body.appendChild(kks);
+// なんでも掲示板
+const ndk = document.createElement("span");
+document.body.appendChild(ndk);
+// scjpセンター西(駅？)
+const scw = document.createElement("span");
+document.body.appendChild(scw);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -152,7 +173,14 @@ setInterval(() => {
     rg(itr, "ゴーレムトラップ", -23, 7, 1)
     rg(ironJikky, "Iron Jikky", -29, 14, 1)
     rg(jkb, "王の橋", 79, 310, 1)
-    rg(nks, "新開地駅", -10, 3-124, 1)
+    rg(nks, "新開地駅", -10, -124, 1)
+    rg(skcs, "すいこん島中心駅", 3197, 71, 1)
+    rg(sksc, "サトウキビファーム", 3238, 82, 1)
+    rg(skt, "クリーパートラップ<br>ツリーファーム<br>天空トラップタワー", 3290, 74, 1)
+    rg(ptf, "ポテトの段々畑", 61, 229, 1)
+    rg(kks, "旧家駅", -66, 85, 1)
+    rg(ndk, "なんでも掲示板", 88, 81, 1)
+    rg(scw, "センター西駅", 34, 76, 1)
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
     wx = window.innerWidth, wy = window.innerHeight;

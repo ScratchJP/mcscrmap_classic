@@ -8,7 +8,7 @@ if (p.has('z')) {
     z = parseInt(p.get('z'));
 }
 if (p.has('s')) {
-    s = parseInt(p.get('s')) * 100;
+    s = parseFloat(p.get('s')) * 100, ms = s, ls = s, l = Math.round(10000 / s) / 100, ml = l;
 }
 let n, y, ymt;
 let wx = window.innerWidth, wy = window.innerHeight, sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
@@ -23,6 +23,12 @@ document.addEventListener("mousemove", (event) => {
         sx += event.movementX / g;
         sy -= event.movementY / g;
     }
+    cx = -event.clientX + wx / 2, cy = event.clientY - wy / 2;
+})
+
+document.addEventListener("touchmove", (event) => {
+    document.ontouchstart = () => { drag = true; }
+    document.ontouchend = () => { drag = false; }
     cx = -event.clientX + wx / 2, cy = event.clientY - wy / 2;
 })
 
@@ -56,9 +62,9 @@ addEventListener("wheel", (event) => {
 // scjp村
 const pScjp = document.createElement("span");
 document.body.appendChild(pScjp);
-// 中野区
-const pNkn = document.createElement("span");
-document.body.appendChild(pNkn);
+// 阿斑市
+const pAsp = document.createElement("span");
+document.body.appendChild(pAsp);
 // 乱歩市
 const pRa = document.createElement("span");
 document.body.appendChild(pRa);
@@ -101,12 +107,12 @@ document.body.appendChild(cuj);
 const y9v = document.createElement("span");
 document.body.appendChild(y9v);
 // 中野区役所
-const pnk = document.createElement("span");
-document.body.appendChild(pnk);
+const pas = document.createElement("span");
+document.body.appendChild(pas);
 // 陸果町utf
 const ufr = document.createElement("span");
 document.body.appendChild(ufr);
-// 中野区坊屋
+// 阿斑市坊屋
 const aby = document.createElement("span");
 document.body.appendChild(aby);
 // 阿斑銀行・信託銀行陸果支店
@@ -161,7 +167,7 @@ document.body.appendChild(scw);
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
     rg(pScjp, "ScJP村", 10, -2, 0);
-    rg(pNkn, "中野区", -510, -190, 0);
+    rg(pAsp, "阿斑市", -510, -190, 0);
     rg(pRa, "乱歩市", -290, -410, 0);
     rg(pRk, "陸果町", -448, -448, 0);
     rg(pBy, "望洋市", -195, -800, 0);
@@ -175,7 +181,7 @@ setInterval(() => {
     rg(pbb, "黒ビル", 125, 107, 1);
     rg(cuj, "じきお像", 55, 112, 1);
     rg(y9v, "村人貿易所", 35, 135, 1);
-    rg(pnk, "区役所", -628, -226, 1);
+    rg(pas, "市役所", -628, -226, 1);
     rg(ufr, "ﾕﾆﾊﾞｰｻﾙﾂﾘｰﾌｧｰﾑ跡", -530, -450, 1);
     rg(aby, "坊屋", -565, -290, 1);
     rg(rab, "阿斑銀行・阿斑信託銀行<br>陸果支店", -444, -530, 1);
@@ -211,6 +217,8 @@ setInterval(() => {
     } else {
         mj.style.cursor = "grab";
     }
+    mj.style.width = `${wx}px`;
+    mj.style.height = `${wy}px`;
 }, 1)
 
 function rg(tg, name, xi, zi, isF) {
@@ -219,7 +227,7 @@ function rg(tg, name, xi, zi, isF) {
         sf = " sm";
         tg.style.opacity = ms / 100 - .4;
     }
-    tg.innerHTML = `<span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 + wy / 2}px);position:absolute;">${name}</span>`;
+    tg.innerHTML = `<span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 - wy / 2}px);position:absolute;">${name}</span>`;
 }
 
 let e = 0;
@@ -241,8 +249,8 @@ function easeOutExpo(x) {
 }
 
 setInterval(() => {
-    history.pushState(null, document.title, `?x=${-Math.round(x * 100) / 100}&z=${Math.round(z * 100) / 100}&s=${s / 100}`);
     p.set('x', -Math.round(x * 100) / 100);
     p.set('z', Math.round(z * 100) / 100);
-    p.set('s', s / 100)
+    p.set('s', Math.round(s) / 100)
+    history.pushState(null, document.title, `?${p.toString()}`);
 }, 100);

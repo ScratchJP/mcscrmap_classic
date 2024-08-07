@@ -1,5 +1,5 @@
 const u = window.location.search
-const p = new URLSearchParams(u.search);
+const p = new URLSearchParams(u);
 let mx = -1536, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100, bs = .1;
 if (p.has('x')) {
     x = -parseInt(p.get('x'));
@@ -241,5 +241,8 @@ function easeOutExpo(x) {
 }
 
 setInterval(() => {
-    history.replaceState(null, document.title, `?x=${Math.round(x * 100) / 100}&z=${Math.round(z * 100) / 100}&s=${s / 100}`);
+    history.pushState(null, document.title, `?x=${-Math.round(x * 100) / 100}&z=${Math.round(z * 100) / 100}&s=${s / 100}`);
+    p.set('x', -Math.round(x * 100) / 100);
+    p.set('z', Math.round(z * 100) / 100);
+    p.set('s', s / 100)
 }, 100);

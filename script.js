@@ -279,5 +279,5 @@ function isElectron() {
 }
 
 function cht() {
-    return `Map (X: ${Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`;
+    return `Map (x${Math.round(s) / 100}, X: ${-Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`;
 }

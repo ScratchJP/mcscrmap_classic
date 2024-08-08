@@ -219,6 +219,9 @@ setInterval(() => {
     }
     mj.style.width = `${wx}px`;
     mj.style.height = `${wy}px`;
+    if (isElectron()) {
+        document.title = `Map (X: ${Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`
+    }
 }, 1)
 
 function rg(tg, name, xi, zi, isF) {
@@ -254,3 +257,23 @@ setInterval(() => {
     p.set('s', Math.round(s) / 100)
     history.pushState(null, document.title, `?${p.toString()}`);
 }, 100);
+
+// detect is electron client or not
+function isElectron() {
+    // Renderer process
+    if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') {
+        return true;
+    }
+  
+    // Main process
+    if (typeof process !== 'undefined' && typeof process.versions === 'object' && !!process.versions.electron) {
+        return true;
+    }
+  
+    // Detect the user agent when the `nodeIntegration` option is set to true
+    if (typeof navigator === 'object' && typeof navigator.userAgent === 'string' && navigator.userAgent.indexOf('Electron') >= 0) {
+        return true;
+    }
+  
+    return false;
+}

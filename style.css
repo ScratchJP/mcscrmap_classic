@@ -9,7 +9,7 @@ body {
 
 .mx {
     /* width: 100vw; height: 100vh; */
-    background-image: url('./map/ov2.png');
+    background-image: url('./map/o.png');
     position: relative;
     background-repeat: no-repeat;
     cursor: grab;

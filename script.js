@@ -220,7 +220,7 @@ setInterval(() => {
     mj.style.width = `${wx}px`;
     mj.style.height = `${wy}px`;
     if (isElectron()) {
-        document.title = `Map (X: ${Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`
+        document.title = cht();
     }
 }, 1)
 
@@ -255,7 +255,7 @@ setInterval(() => {
     p.set('x', -Math.round(x * 100) / 100);
     p.set('z', Math.round(z * 100) / 100);
     p.set('s', Math.round(s) / 100)
-    history.pushState(null, document.title, `?${p.toString()}`);
+    history.pushState(null, cht(), `?${p.toString()}`);
 }, 100);
 
 // detect is electron client or not
@@ -276,4 +276,8 @@ function isElectron() {
     }
   
     return false;
+}
+
+function cht() {
+    return `Map (X: ${Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`;
 }

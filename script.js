@@ -163,6 +163,15 @@ document.body.appendChild(ndk);
 // scjpセンター西(駅？)
 const scw = document.createElement("span");
 document.body.appendChild(scw);
+// 阿斑市役所前(駅？)
+const asb = document.createElement("span");
+document.body.appendChild(asb);
+// 阿斑市闘技場
+const afp = document.createElement("span");
+document.body.appendChild(afp);
+// 阿斑市坊屋橋
+const byb = document.createElement("span");
+document.body.appendChild(byb);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -200,7 +209,10 @@ setInterval(() => {
     rg(kks, "旧家駅", -66, 85, 1)
     rg(ndk, "なんでも掲示板", 88, 81, 1)
     rg(scw, "センター西駅", 34, 76, 1)
-    // 3126, -261
+    rg(asb, "市役所前駅", -611, -201, 1)
+    rg(afp, "闘技場", -606, -157, 1)
+    rg(byb, "坊屋橋", -575, -258, 1)
+    // 3126, -261 すいこん離島
     ms -= bs;
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;

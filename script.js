@@ -53,8 +53,8 @@ addEventListener("wheel", (event) => {
         }
     }
     l = Math.round(10000 / s) / 100;
-    sx += (cx * ymt / 42) * (1 - s / ls) / 8;
-    sy += (cy * ymt / 42) * (1 - s / ls) / 8;
+    sx += (cx * ymt / 42) * (1 - s / ls) / 8 * -n;
+    sy += (cy * ymt / 42) * (1 - s / ls) / 8 * -n;
     ls = s;
 });
 
@@ -242,7 +242,22 @@ function rg(tg, name, xi, zi, isF) {
         sf = " sm";
         tg.style.opacity = ms / 100 - .4;
     }
-    tg.innerHTML = `<span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 - wy / 2}px);position:absolute;">${name}</span>`;
+    let sp = "";
+    let mb = 0;
+    let pd = 3;
+    if (ms >= 400) {
+        mb = (ms / 100 - 4) * 20 - 10;
+        if (ms >= 500) {
+            mb = 10;
+        }
+    }
+    if (ms >= 400) {
+        sp = `opacity:${ms / 100 - 4};margin-bottom:${mb}px`;
+    }
+    tg.innerHTML = `<div style="transform-origin:bottom;transform:translate(${((x + xi) * ms / 100 + wx / 2) + (.5 * ms / 100)}px,${((-z + zi) * ms / 100 - wy / 2) + ((0 + (mb / 25)) * ms / 100)}px);position:absolute;"><div class="tif" style="transform:translate(-50%,-150%);padding:3px ${pd}px;"><span>${name}</span><p class="tpos" id="tb" style="${sp}">${xi} ${zi}</p></div></div>`;
+    // transform:translate(-50%,-150%)
+    // <span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 - wy / 2}px);position:absolute;">${name}</span>
+    // <div class="tif" onclick="ca(document.getElementById('tb'))"><span>never trust me.</span><p class="tpos" id="tb">600 200</p></div>
 }
 
 let e = 0;

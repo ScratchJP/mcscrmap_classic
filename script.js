@@ -1,19 +1,31 @@
 const u = window.location.search
 const p = new URLSearchParams(u);
-let mx = -1536, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100, bs = .1;
-if (p.has('x')) {
-    x = -parseInt(p.get('x'));
-}
-if (p.has('z')) {
-    z = parseInt(p.get('z'));
-}
-if (p.has('s')) {
-    s = parseFloat(p.get('s')) * 100, ms = s, ls = s, l = Math.round(10000 / s) / 100, ml = l;
-}
+let mx = -2560, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100, bs = .1;
 let n, y, ymt;
 let wx = window.innerWidth, wy = window.innerHeight, sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
 let drag = false;
-const g = 12, b = 32, mj = document.getElementById('mh'), ix = 5632, iy = 5120;
+const g = 12, b = 32, mj = document.getElementById('mh'), ix = 6656, iy = 5120;
+if (p.has('x')) {
+    if (isNaN(parseFloat(p.get('x')))) {
+        x = 0;
+    } else {
+        x = -parseFloat(p.get('x'));
+    }
+}
+if (p.has('z')) {
+    if (isNaN(-parseFloat(p.get('z')))) {
+        z = 0;
+    } else {
+        z = parseFloat(p.get('z'));
+    }
+}
+if (p.has('s')) {
+    if (isNaN(parseFloat(p.get('s')))) {
+        s = 100;
+    } else {
+        s = parseFloat(p.get('s')) * 100, ms = s, ls = s, l = Math.round(10000 / s) / 100, ml = l;
+    }
+}
 
 
 document.addEventListener("mousemove", (event) => {
@@ -58,37 +70,6 @@ addEventListener("wheel", (event) => {
     ls = s;
 });
 
-/// 地域
-// scjp村
-const pScjp = document.createElement("span");
-document.body.appendChild(pScjp);
-// 阿斑市
-const pAsp = document.createElement("span");
-document.body.appendChild(pAsp);
-// 乱歩市
-const pRa = document.createElement("span");
-document.body.appendChild(pRa);
-// 陸果町
-const pRk = document.createElement("span");
-document.body.appendChild(pRk);
-// 望洋
-const pBy = document.createElement("span");
-document.body.appendChild(pBy);
-// ysタウン
-const pys = document.createElement("span");
-document.body.appendChild(pys);
-// すいこん
-const psk = document.createElement("span");
-document.body.appendChild(psk);
-// ごんらんど
-const paI = document.createElement("span");
-document.body.appendChild(paI);
-// uxrcf
-const pUX = document.createElement("span");
-document.body.appendChild(pUX);
-// 凛
-const pLi = document.createElement("span");
-document.body.appendChild(pLi);
 
 /// 施設
 // ScJP一周年記念館
@@ -172,6 +153,44 @@ document.body.appendChild(afp);
 // 阿斑市坊屋橋
 const byb = document.createElement("span");
 document.body.appendChild(byb);
+// 阿斑銀行本店001
+const ab001 = document.createElement("span");
+document.body.appendChild(ab001);
+
+/// 地域
+// scjp村
+const pScjp = document.createElement("span");
+document.body.appendChild(pScjp);
+// 阿斑市
+const pAsp = document.createElement("span");
+document.body.appendChild(pAsp);
+// 乱歩市
+const pRa = document.createElement("span");
+document.body.appendChild(pRa);
+// 陸果町
+const pRk = document.createElement("span");
+document.body.appendChild(pRk);
+// 望洋
+const pBy = document.createElement("span");
+document.body.appendChild(pBy);
+// ysタウン
+const pys = document.createElement("span");
+document.body.appendChild(pys);
+// すいこん
+const psk = document.createElement("span");
+document.body.appendChild(psk);
+// ごんらんど
+const paI = document.createElement("span");
+document.body.appendChild(paI);
+// uxrcf
+const pUX = document.createElement("span");
+document.body.appendChild(pUX);
+// 凛
+const pLi = document.createElement("span");
+document.body.appendChild(pLi);
+// すいめろ
+const psm = document.createElement("span");
+document.body.appendChild(psm);
 
 setInterval(() => {
     // rg(変数, 地域・施設名, x, z, 施設？)
@@ -185,6 +204,8 @@ setInterval(() => {
     rg(paI, "あぁるごんアイランド", 3600, 344, 0);
     rg(pUX, "UXRCF市", 872, 269, 0);
     rg(pLi, "凛市", -6, 1420, 0);
+    rg(psm, "すいめろ島", 3126, -261, 0);
+
     rg(p1a, "ScJP一周年記念館", 153, 356, 1);
     rg(pss, "市役所", 76, 101, 1);
     rg(pbb, "黒ビル", 125, 107, 1);
@@ -212,7 +233,7 @@ setInterval(() => {
     rg(asb, "市役所前駅", -611, -201, 1)
     rg(afp, "闘技場", -606, -157, 1)
     rg(byb, "坊屋橋", -575, -258, 1)
-    // 3126, -261 すいこん離島
+    rg(ab001, "阿斑銀行本店(001)", 100, 65, 1)
     ms -= bs;
     ms += (s - ms) / 32;
     ml += (l - ml) / 32;
@@ -220,7 +241,7 @@ setInterval(() => {
     wx = window.innerWidth, wy = window.innerHeight;
     mj.style.backgroundPosition = `${(x + mx) * (ms / 100) + wx / 2}px ${(-z + mz) * (ms / 100) + wy / 2}`;
     mj.style.backgroundSize = `${ix * (ms / 100 + 0)}px ${iy * (ms / 100 + 0)}px`
-    document.getElementById('pos').textContent = `X: ${-(Math.round((x + cx * ml)))} Z: ${Math.round((z + cy * ml))}`;
+    document.getElementById('pos').textContent = `X: ${-(Math.ceil((x + cx * ml)))} Z: ${Math.floor(((z + cy * ml) * 10) / 10)}`;
     document.getElementById('z').textContent = `x${Math.round(ms) / 100}`
     sx -= sx / b, sy -= sy / b;
     x += sx * ml / ((ml > 2) + 1); z += sy * ml / ((ml > 2) + 1);
@@ -238,26 +259,40 @@ setInterval(() => {
 
 function rg(tg, name, xi, zi, isF) {
     let sf = "";
-    if (isF) {
-        sf = " sm";
+    let mt = 1;
+    if (!isF) {
+        sf = " tbg";
+        mt = 1.5;
+    } else {
         tg.style.opacity = ms / 100 - .4;
     }
     let sp = "";
-    let mb = 0;
+    let mb = -10;
     let pd = 3;
+    let pt = 2;
+    let dk = 5;
+    let fr = "";
+    if (ms <= 25 && !isF) {
+        fr = `font-size:${ms / 25}rem;`;
+        pd = 3 * ms / 25;
+        pt = 2 * ms / 25;
+    }
     if (ms >= 400) {
         mb = (ms / 100 - 4) * 20 - 10;
+        dk = (ms / 100 - 4) * 5 + 5;
+        pd = 3 + (ms / 100 - 4)
         if (ms >= 500) {
             mb = 10;
+            dk = 10;
+            if (ms >= 1650) {
+                pd = 15.5
+            }
         }
     }
     if (ms >= 400) {
         sp = `opacity:${ms / 100 - 4};margin-bottom:${mb}px`;
     }
-    tg.innerHTML = `<div style="transform-origin:bottom;transform:translate(${((x + xi) * ms / 100 + wx / 2) + (.5 * ms / 100)}px,${((-z + zi) * ms / 100 - wy / 2) + ((0 + (mb / 25)) * ms / 100)}px);position:absolute;"><div class="tif" style="transform:translate(-50%,-150%);padding:3px ${pd}px;"><span>${name}</span><p class="tpos" id="tb" style="${sp}">${xi} ${zi}</p></div></div>`;
-    // transform:translate(-50%,-150%)
-    // <span class="t${sf}" style="transform:translate(${(x + xi) * ms / 100 + wx / 2}px,${(-z + zi) * ms / 100 - wy / 2}px);position:absolute;">${name}</span>
-    // <div class="tif" onclick="ca(document.getElementById('tb'))"><span>never trust me.</span><p class="tpos" id="tb">600 200</p></div>
+    tg.innerHTML = `<div style="transform-origin:bottom;transform:translate(${((x + xi) * ms / 100 + wx / 2) + (.5 * ms / 100)}px,${((-z + zi + .35) * ms / 100 - wy / 2) + ((0 + (mb / 25)) * ms / 100) + (dk * mt)}px);position:absolute;" c;lass="${sf.slice(1,3)}"><div class="tif${sf}" style="transform:translate(-50%,-150%);padding:${pt}px ${pd}px;${fr}"><span>${name}</span><p class="tpos" id="tb" style="${sp}">${xi} ${zi}</p></div></div>`;
 }
 
 let e = 0;

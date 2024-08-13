@@ -12,7 +12,6 @@ body {
     background-image: url('./map/o.png');
     position: relative;
     background-repeat: no-repeat;
-    cursor: grab;
     text-align: center;
     background-color: #000;
     overflow: hidden;
@@ -67,8 +66,10 @@ body {
     transform-origin: bottom;
 }
 
-/* 
-.tif:hover .tpos {
-    opacity: 1;
-    margin-bottom: 10px;
+.tbg {
+    font-size: 1rem;
+}
+
+#pos {
+    padding: 2.4px 3.2px;
 }

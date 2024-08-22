@@ -317,7 +317,7 @@ setInterval(() => {
     p.set('x', -Math.round(x * 100) / 100);
     p.set('z', Math.round(z * 100) / 100);
     p.set('s', Math.round(s) / 100)
-    history.pushState(null, cht(), `?${p.toString()}`);
+    history.replaceState(null, "", `?${p.toString()}`);
 }, 100);
 
 // detect is electron client or not

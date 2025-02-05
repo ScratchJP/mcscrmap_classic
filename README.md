@@ -6,5 +6,6 @@ legacy ScJPMC dynmap alternative.
 - non-quick facilities and cities points
 - facilities and cities pos
 - no map auto updater
-### *\* deprecated \**
+### ~~*\* deprecated \**~~
+*\* undeprecated we have to use this again \**\
 ***use https://map.mcscr.jp instead.***

@@ -1,9 +1,16 @@
 const u = window.location.search
 const p = new URLSearchParams(u);
+const map = document.getElementsByClassName("mx")[0]
+/*
+    variables i remember:
+    mx = mapImageTopLeftX, mz = mapImageTopLeftZ
+    x = Xpos, z = Zpos, s = zoom
+    sx = xVelocity, sz = zVelocity
+*/
 let mx = -2560, mz = -2048, x = 0, z = 0, s = 100, ms = 100, l = 1, ml = 1, ls = 100, bs = .1;
 let n, y, ymt;
 let wx = window.innerWidth, wy = window.innerHeight, sx = 0, sy = 0, cx = 0, cy = 0, scr = 0;
-let drag = false;
+let drag = false, isDebug = !1;
 const g = 12, b = 32, mj = document.getElementById('mh'), ix = 6656, iy = 5120;
 if (p.has('x')) {
     if (isNaN(parseFloat(p.get('x')))) {
@@ -27,15 +34,27 @@ if (p.has('s')) {
     }
 }
 
+document.addEventListener("mousedown", event => {
+    dragging(true);
+    console.log(!0)
+})
+
+document.addEventListener("mouseup", event => {
+    dragging(false);
+    console.log(!1)
+})
 
 document.addEventListener("mousemove", (event) => {
-    document.onmousedown = () => { drag = true; }
-    document.onmouseup = () => { drag = false; }
-    if ( drag ) {
-        sx += event.movementX / g;
-        sy -= event.movementY / g;
+    if (event.buttons) {
+        x += event.movementX;
+        z -= event.movementY;
     }
     cx = -event.clientX + wx / 2, cy = event.clientY - wy / 2;
+    cursor = "grabbing";
+})
+
+document.addEventListener("mouseout", event => {
+    console.log(event.movementX, event.movementY)
 })
 
 document.addEventListener("touchmove", (event) => {
@@ -44,7 +63,7 @@ document.addEventListener("touchmove", (event) => {
     cx = -event.clientX + wx / 2, cy = event.clientY - wy / 2;
 })
 
-addEventListener("wheel", (event) => {
+document.addEventListener("wheel", (event) => {
     scr = event.deltaY;
     n = scr / Math.abs(scr);
     y = n * 10 / (((s <= 100 && n > 0) || s < 100) + 1) * (((s >= 250 && n < 0) || s > 250) * 4 + 1) * (((s >= 2500 && n < 0) || s > 2500) + 1);
@@ -245,11 +264,6 @@ setInterval(() => {
     document.getElementById('z').textContent = `x${Math.round(ms) / 100}`
     sx -= sx / b, sy -= sy / b;
     x += sx * ml / ((ml > 2) + 1); z += sy * ml / ((ml > 2) + 1);
-    if (drag) {
-        mj.style.cursor = "grabbing";
-    } else {
-        mj.style.cursor = "grab";
-    }
     mj.style.width = `${wx}px`;
     mj.style.height = `${wy}px`;
     if (isElectron()) {
@@ -343,3 +357,5 @@ function isElectron() {
 function cht() {
     return `Map (x${Math.round(s) / 100}, X: ${-Math.round(x * 100) / 100} Z: ${Math.round(z * 100) / 100})`;
 }
+
+function dragging(bool) { map.style.cursor = bool ? "grabbing" : "grab", drag = bool }

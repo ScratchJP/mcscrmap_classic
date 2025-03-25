@@ -8,4 +8,6 @@ legacy ScJPMC dynmap alternative.
 - no map auto updater
 ### ~~*\* deprecated \**~~
 ~~***use https://map.mcscr.jp instead.***~~\
-*\* undeprecated we have to use this again \**
+^^*\* undeprecated we have to use this again \**~~
+
+### new version coming soon...
